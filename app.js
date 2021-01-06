@@ -17,7 +17,7 @@ function addTask() {
              // Alert
          createAlert('alert alert-success', 'Task Added!');
          // timeout
-         timeOut('alert', 3000);
+         timeOut('alert', 2000);
         }
     
         // Clear Input Field
@@ -27,7 +27,7 @@ function addTask() {
         // Alert
         if(document.querySelector('.alert') < 1) {
             createAlert('alert alert-danger', 'Please Add Task!');
-            timeOut('alert', 3000);
+            timeOut('alert', 2000);
         }
     }
 }
@@ -38,7 +38,13 @@ clearBtn.addEventListener('click', clear);
 function clear(e) {
     const listItems = document.querySelectorAll('li');
     listItems.forEach(function(listItem) {
-        listItem.remove();
+            listItem.remove();
+
+              // Alert
+            if(document.querySelector('.alert') < 1) {
+            createAlert('alert alert-info', 'Task Cleared');
+            timeOut('alert', 2000);
+            }  
     })
 
     e.preventDefault();
@@ -50,18 +56,26 @@ taskItems.addEventListener('click', deleteItem);
 function deleteItem(e) {
     // console.log(e.target.parentElement)
     if(e.target.parentElement.classList.contains('delete-item')) {
-        if(confirm('Are You Sure?')){
+        if(confirm('DO YOU WANT TO DELETE THIS TASK?')){
             e.target.parentElement.parentElement.remove();
             if(document.querySelector('.alert') < 1) {
                  // Alert
             createAlert('alert alert-danger', 'Task Deleted!');
             // timeout
-       timeOut('alert', 3000);
+       timeOut('alert', 2000);
             }
            
         }
     }
 }
+
+
+
+// Date
+
+document.addEventListener('DOMContentLoaded', function() {
+    dates();
+})
 
 
 
@@ -130,6 +144,38 @@ function clearFields() {
     const newTask = document.querySelector('#newTask');
     newTask.value = ''
 };
+
+
+// Date
+function dates() {
+    const year = new Date().getFullYear();
+    const month = new Date().getMonth()
+    if(month === 0) {
+        document.querySelector('.insert-date').innerHTML = `Jan ${year}`;
+    }else if(month === 1) {
+        document.querySelector('.insert-date').innerHTML = `Feb ${year}`
+    }else if(month === 2) {
+        document.querySelector('.insert-date').innerHTML = `Mar ${year}`
+    }else if(month === 3) {
+        document.querySelector('.insert-date').innerHTML = `Apr ${year}`
+    }else if(month === 4) {
+        document.querySelector('.insert-date').innerHTML = `May ${year}`
+    }else if(month === 5) {
+        document.querySelector('.insert-date').innerHTML = `Jun ${year}`
+    }else if(month === 6) {
+        document.querySelector('.insert-date').innerHTML = `Jul ${year}`
+    }else if(month === 7) {
+        document.querySelector('.insert-date').innerHTML = `Aug ${year}`
+    }else if(month === 8) {
+        document.querySelector('.insert-date').innerHTML = `Sep ${year}`
+    }else if(month === 9) {
+        document.querySelector('.insert-date').innerHTML = `Oct ${year}`
+    }else if(month === 10) {
+        document.querySelector('.insert-date').innerHTML = `Nov ${year}`
+    }else if(month === 11) {
+        document.querySelector('.insert-date').innerHTML = `Dec ${year}`
+    }
+}
 
 
 
