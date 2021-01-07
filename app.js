@@ -9,10 +9,9 @@ cardForm.addEventListener('click', addTask);
 function addTask() {
     const newTask = document.querySelector('#newTask');
     
-    if(newTask.value !== ''){
+    if(newTask.value !== '' && newTask.value.length <= 27){
         // Add Tasks
         addTasks(newTask.value);
-
         if(document.querySelector('.alert') < 1) {
              // Alert
          createAlert('alert alert-success', 'Task Added!');
@@ -22,8 +21,24 @@ function addTask() {
     
         // Clear Input Field
         clearFields();
+        
 
-    }else{
+    } else if(newTask.value !== '' && newTask.value.length >= 28){
+        // Add Tasks
+        // addTasks(newTask.value);
+        if(document.querySelector('.alert') < 1) {
+             // Alert
+         createAlert('alert alert-info', 'Maximum of 27 characters required!');
+         // timeout
+         timeOut('alert', 2500);
+        }
+    
+        // Clear Input Field
+        clearFields();
+        
+
+    }
+    else{
         // Alert
         if(document.querySelector('.alert') < 1) {
             createAlert('alert alert-danger', 'Please Add Task!');
